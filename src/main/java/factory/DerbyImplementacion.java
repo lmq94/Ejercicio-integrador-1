@@ -1,6 +1,6 @@
 package factory;
 
-public class DerbyImplementacion implements ConexionFactory{
+public class DerbyImplementacion {
 
 
 
