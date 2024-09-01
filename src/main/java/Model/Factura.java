@@ -24,4 +24,12 @@ public class Factura {
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
+
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "idFactura=" + idFactura +
+                ", idCliente=" + idCliente +
+                '}';
+    }
 }
