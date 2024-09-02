@@ -18,7 +18,8 @@ public class Conexion {
             this.contrasena=contrasena;
             this.conexion= DriverManager.getConnection(url,usuario,contrasena);
         }catch (SQLException e){
-            throw new SQLException("No se pudo conectar a la base");
+                System.out.println("Error SQL: " + e.getMessage());
+                throw new SQLException("No se pudo conectar a la base", e);
         }
     }
 

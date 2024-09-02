@@ -30,15 +30,15 @@ public class MySQLImplementacion implements ConexionFactory{
                             "email VARCHAR(150)," +
                             "PRIMARY KEY(idCliente))";
 
-                    String queryFactura=" CREATE IF NOT EXISTS factura(" +"idFacture INT," +
+                    String queryFactura=" CREATE TABLE IF NOT EXISTS factura(" +"idFactura INT," +
                             "idCliente INT," +
                             "PRIMARY KEY(idFactura)," +
                             "FOREIGN KEY(idCliente) REFERENCES cliente(idCliente))";
-                    String queryProducto = "CREATE TABLE IF NOT EXIST producto("+"idProducto INT," +
+                    String queryProducto = "CREATE TABLE IF NOT EXISTS producto("+"idProducto INT," +
                             "nombre VARCHAR(45)," +
                             "valor FLOAT," +
                             "PRIMARY KEY(idProducto))";
-                    String queryFActura_Producto = "CREATE TABLE IF NOT EXISTS factura_producto("+"idFactura INT," +
+                    String queryfactura_Producto = "CREATE TABLE IF NOT EXISTS factura_producto("+"idFactura INT," +
                             "idProducto INT," +
                             "cantidad INT," +
                             "PRIMARY KEY(idFactura,idProducto)," +
@@ -47,7 +47,7 @@ public class MySQLImplementacion implements ConexionFactory{
                     statement.execute(queryCliente);
                     statement.execute(queryFactura);
                     statement.execute(queryProducto);
-                    statement.execute(queryFActura_Producto);
+                    statement.execute(queryfactura_Producto);
             }catch (SQLException e){
                 throw new SQLException(e);
             }
