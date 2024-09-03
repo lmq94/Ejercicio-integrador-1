@@ -1,27 +1,27 @@
 package factory;
 
 import daos.ClienteDAO;
-import daos.mysql.ClienteDAOMySQL;
 import daos.ProductoDAO;
-import daos.mysql.ProductoDAOMySQL;
+import daos.derby.ClienteDAODerby;
+import daos.derby.ProductoDAODerby;
 
 import java.sql.Connection;
 
-public class MySQLDAOFactory implements DAOFactory{
+public class DerbyDAOFactory implements DAOFactory{
 
     private Connection conexion;
 
-    public MySQLDAOFactory(Connection conexion) {
+    public DerbyDAOFactory(Connection conexion) {
         this.conexion = conexion;
     }
 
     @Override
     public ClienteDAO getClienteDAO() {
-        return new ClienteDAOMySQL(conexion);
+        return new ClienteDAODerby(conexion);
     }
 
     @Override
     public ProductoDAO getProductoDAO() {
-        return new ProductoDAOMySQL(conexion);
+        return new ProductoDAODerby(conexion);
     }
 }
