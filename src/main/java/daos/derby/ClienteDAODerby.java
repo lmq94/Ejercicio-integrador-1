@@ -1,19 +1,18 @@
-package daos;
+package daos.derby;
 
 import Model.Cliente;
+import daos.ClienteDAO;
 
 import java.sql.Connection;
 import java.util.List;
 
-public class ClienteDAOMySQL extends ClienteDAO {
+public class ClienteDAODerby implements ClienteDAO {
+
     private Connection conexion;
 
-    public ClienteDAOMySQL(Connection conexion) {
+    public ClienteDAODerby(Connection conexion) {
         this.conexion = conexion;
     }
-
-    //operaciones para cliente dao en mysql
-
 
     @Override
     public void insertar(Cliente elemento) {
@@ -31,7 +30,12 @@ public class ClienteDAOMySQL extends ClienteDAO {
     }
 
     @Override
-    public void actualizar(Cliente elemento) {
+    public void actualizar(Cliente elemento,Cliente nuevo) {
 
+    }
+
+    @Override
+    public Cliente getId(Cliente elemento) {
+        return null;
     }
 }
