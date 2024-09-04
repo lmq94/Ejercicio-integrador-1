@@ -1,13 +1,11 @@
-package daos.derby;
+package daos.mysql;
 
 import Model.Factura_Producto;
 import daos.Factura_ProductoDAO;
 
-import java.sql.Connection;
 import java.util.List;
 
-public class FacturaProductoDAODerby implements Factura_ProductoDAO {
-    private Connection conexion;
+public class Factura_ProductoDAOMySQL implements Factura_ProductoDAO {
 
 
     @Override
