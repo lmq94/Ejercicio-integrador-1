@@ -1,29 +1,29 @@
 package daos.mysql;
 
 import daos.FacturaProductoDAO;
-import model.FacturaProducto;
+import Model.Factura_Producto;
 
 import java.util.List;
 
 public class FacturaProductoDAOMySQL implements FacturaProductoDAO {
 
     @Override
-    public void insertar(FacturaProducto elemento) throws Exception {
+    public void insertar(Factura_Producto elemento) throws Exception {
 
     }
 
     @Override
-    public void eliminar(FacturaProducto elemento) throws Exception {
+    public void eliminar(Factura_Producto elemento) throws Exception {
 
     }
 
     @Override
-    public void actualizar(FacturaProducto elemento, FacturaProducto nuevo) throws Exception {
+    public void actualizar(Factura_Producto elemento, Factura_Producto nuevo) throws Exception {
 
     }
 
     @Override
-    public FacturaProducto getId(FacturaProducto elemento) throws Exception {
+    public Factura_Producto getId(Factura_Producto elemento) throws Exception {
         return null;
     }
 

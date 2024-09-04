@@ -38,16 +38,15 @@ public class MySQLImplementacion implements ConexionFactory{
                             "nombre VARCHAR(45)," +
                             "valor FLOAT," +
                             "PRIMARY KEY(idProducto))";
-                    String queryfactura_Producto = "CREATE TABLE IF NOT EXISTS factura_producto("+"idFactura INT," +
+                    String queryfactura_producto = "CREATE TABLE IF NOT EXISTS factura_producto("+"idFactura INT," +
                             "idProducto INT," +
                             "cantidad INT," +
-                            "PRIMARY KEY(idFactura,idProducto)," +
-                            "FOREIGN KEY(idFactura) REFERENCES factura(idFactura))";
+                            "FOREIGN KEY(idFactura,idProducto) REFERENCES factura(idFactura),producto(idProducto))";
 
                     statement.execute(queryCliente);
                     statement.execute(queryFactura);
                     statement.execute(queryProducto);
-                    statement.execute(queryfactura_Producto);
+                    statement.execute(queryfactura_producto);
             }catch (SQLException e){
                 throw new SQLException(e);
             }
