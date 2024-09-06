@@ -1,6 +1,6 @@
 package daos.derby;
 
-import Model.Cliente;
+import model.Cliente;
 import daos.ClienteDAO;
 
 import java.sql.Connection;

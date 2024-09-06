@@ -32,9 +32,4 @@ public class Conexion {
             instancia=new Conexion(url,usuario,contrasena);
         return instancia;
     }
-
-
-
-
-
 }

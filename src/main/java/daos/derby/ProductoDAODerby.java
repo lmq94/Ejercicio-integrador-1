@@ -1,6 +1,6 @@
 package daos.derby;
 
-import Model.Producto;
+import model.Producto;
 import daos.ProductoDAO;
 
 import java.sql.Connection;
@@ -37,5 +37,10 @@ public class ProductoDAODerby implements ProductoDAO {
     @Override
     public List<Producto> obtenerTodos() throws Exception {
         return List.of();
+    }
+
+    @Override
+    public Producto obtenerProductoMasRecaudado() {
+        return null;
     }
 }

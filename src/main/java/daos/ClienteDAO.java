@@ -1,6 +1,6 @@
 package daos;
 
-import Model.Cliente;
+import model.Cliente;
 
 import java.util.List;
 

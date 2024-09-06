@@ -1,7 +1,7 @@
 package daos.mysql;
 
-import Model.Cliente;
-import Model.Factura;
+import model.Cliente;
+import model.Factura;
 import daos.FacturaDAO;
 
 import java.sql.Connection;
@@ -46,11 +46,11 @@ public class FacturaDAOMySQL implements FacturaDAO {
 
     @Override
     public void insertar(Factura elemento) throws Exception {
-        String query = "INSERT INTO factura (idCliente) VALUES (?)";
+        String query = "INSERT INTO factura (idCliente,idFactura) VALUES (?,?)";
         try(PreparedStatement ps = conexion.prepareStatement(query)){
-            ps.setInt(1,elemento.getIdFactura());
-            ps.setInt(2,elemento.getIdCliente());
-            ps.executeQuery();
+            ps.setInt(1,elemento.getIdCliente());
+            ps.setInt(2,elemento.getIdFactura());
+            ps.executeUpdate();
 
         }catch (SQLException e){
             throw new Exception("Error al insertar la factura: ",e);

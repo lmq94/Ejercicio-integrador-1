@@ -1,6 +1,6 @@
 package daos;
 
-import Model.Factura_Producto;
+import model.Factura_Producto;
 
 public interface Factura_ProductoDAO extends DAO<Factura_Producto> {
 }

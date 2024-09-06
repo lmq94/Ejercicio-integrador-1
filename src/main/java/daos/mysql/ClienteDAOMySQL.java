@@ -1,6 +1,6 @@
 package daos.mysql;
 
-import Model.Cliente;
+import model.Cliente;
 import daos.ClienteDAO;
 
 import java.sql.Connection;
@@ -68,12 +68,12 @@ public class ClienteDAOMySQL implements ClienteDAO {
 
     @Override
     public void insertar(Cliente elemento) throws Exception {
-        String query = "INSERT INTO cliente(nombre,email) VALUES(?,?)";
+        String query = "INSERT INTO cliente(idCliente,nombre,email) VALUES(?,?,?)";
         try(PreparedStatement ps = conexion.prepareStatement(query)){
             ps.setInt(1,elemento.getIdCliente());
             ps.setString(2,elemento.getNombre());
             ps.setString(3,elemento.getEmail());
-            ps.executeQuery();
+            ps.executeUpdate();
 
         }catch (SQLException e){
             throw new Exception("Error al insertar el cliente: ",e);

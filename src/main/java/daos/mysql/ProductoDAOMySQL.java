@@ -1,7 +1,7 @@
 package daos.mysql;
 
-import Model.Factura;
-import Model.Producto;
+
+import model.Producto;
 import daos.ProductoDAO;
 
 import java.sql.Connection;
@@ -24,12 +24,12 @@ public class ProductoDAOMySQL implements ProductoDAO {
 
     @Override
     public void insertar(Producto elemento) throws Exception {
-        String query = "INSERT INTO producto (nombre,valor) VALUES (?,?)";
+        String query = "INSERT INTO producto (idProducto,nombre,valor) VALUES (?,?,?)";
         try(PreparedStatement ps = conexion.prepareStatement(query)){
             ps.setInt(1, elemento.getIdProducto());
             ps.setString(2, elemento.getNombre());
             ps.setFloat(3,elemento.getValor());
-            ps.executeQuery();
+            ps.executeUpdate();
 
         }catch (SQLException e){
             throw new Exception("Error al insertar el producto: ",e);
@@ -116,5 +116,26 @@ public class ProductoDAOMySQL implements ProductoDAO {
             throw new Exception("Error al obtener  el producto: ",e);
         }
         return productos;
+    }
+
+    @Override
+    public Producto obtenerProductoMasRecaudado() {
+        String query = "SELECT p.idProducto, p.nombre, p.valor, SUM(fp.cantidad * p.valor) AS recaudacion_total " +
+                "FROM producto p " +
+                "JOIN factura_producto fp ON p.idProducto = fp.idProducto " +
+                "GROUP BY p.idProducto " +
+                "ORDER BY recaudacion_total DESC " +
+                "LIMIT 1";
+
+        try(PreparedStatement statement=this.conexion.prepareStatement(query)){
+            ResultSet rs=statement.executeQuery();
+            if(rs.next()){
+                Producto producto = new Producto(rs.getInt("idProducto"),rs.getString("nombre"),rs.getFloat("valor"));
+                return producto;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

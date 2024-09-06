@@ -1,6 +1,6 @@
 package daos;
 
-import Model.Factura;
+import model.Factura;
 
 import java.util.List;
 

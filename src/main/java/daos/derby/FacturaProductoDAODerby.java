@@ -1,6 +1,6 @@
 package daos.derby;
 
-import Model.Factura_Producto;
+import model.Factura_Producto;
 import daos.Factura_ProductoDAO;
 
 import java.sql.Connection;
