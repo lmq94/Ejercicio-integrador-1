@@ -1,3 +1,4 @@
+import DTOs.ProductoDTO;
 import conexion.Conexion;
 import daos.ProductoDAO;
 import factory.ConexionFactory;
@@ -12,9 +13,18 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        /* DATOS PARA MYSQL*/
+        String url = "jdbc:mysql://localhost:3306/mysqlJdbc";
+        String usuario = "root";
+        String contrasena = "123";
+        String database = "mysql";
+
+        /*DATOS PARA DERBY
+         *   String url="";
+         * */
 
         //Seleccion de la base de datos a usar(mysql o derby)
-        ConexionFactory factory= DBFactory.getDB("mysql","jdbc:mysql://localhost:3306/mysqlJdbc","usuario","123");
+        ConexionFactory factory= DBFactory.getDB(database,url,usuario,contrasena);
         Connection conexion= factory.crearConexion();
 
         //creacion de tablas en la base de datos seleccionada
@@ -28,15 +38,15 @@ public class Main {
         //cargador.readFacturas();
         //cargador.readFacturasProductos();
 
-        ProductoDAO productoDao= dao.getProductoDAO();
-        Producto producto=productoDao.obtenerProductoMasRecaudado();
 
-        if(producto !=null){
-            System.out.println("Producto que más recaudó: " + producto.getNombre());
-            System.out.println("Valor del producto: " + producto.getValor());
-        }else{
-            System.out.println("No se encontró ningún producto.");
-        }
+        ProductoDAO productoDao= dao.getProductoDAO();
+        ProductoDTO producto=productoDao.obtenerProductoMasRecaudado();
+
+        // Obtener producto con mayor recaudación (sin ID)
+        ProductoDTO productoMayorRecaudacion = productoDao.obtenerProductoMasRecaudado();
+        System.out.println("Producto con mayor recaudación: " + productoMayorRecaudacion.getNombre() +
+                " con un total de recaudación de: " + productoMayorRecaudacion.getRecaudacion());
+
 
 
 

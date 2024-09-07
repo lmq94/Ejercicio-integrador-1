@@ -1,6 +1,7 @@
 package daos.mysql;
 
 
+import DTOs.ProductoDTO;
 import model.Producto;
 import daos.ProductoDAO;
 
@@ -14,9 +15,17 @@ import java.util.List;
 public class ProductoDAOMySQL implements ProductoDAO {
 
     private Connection conexion;
+    private static ProductoDAO instance;
 
-    public ProductoDAOMySQL(Connection conexion) {
+    private ProductoDAOMySQL(Connection conexion) {
         this.conexion = conexion;
+    }
+
+    public static ProductoDAO getInstancia(Connection conexion) {
+        if (instance == null) {
+            instance = new ProductoDAOMySQL(conexion);
+        }
+        return instance;
     }
 
     //operaciones de dao para producto en msyql
@@ -119,22 +128,26 @@ public class ProductoDAOMySQL implements ProductoDAO {
     }
 
     @Override
-    public Producto obtenerProductoMasRecaudado() {
-        String query = "SELECT p.idProducto, p.nombre, p.valor, SUM(fp.cantidad * p.valor) AS recaudacion_total " +
+    public ProductoDTO obtenerProductoMasRecaudado() throws Exception {
+        String query = "SELECT p.nombre, p.valor, SUM(fp.cantidad) as cantidadVendida, " +
+                "SUM(fp.cantidad * p.valor) as recaudacion " +
                 "FROM producto p " +
                 "JOIN factura_producto fp ON p.idProducto = fp.idProducto " +
-                "GROUP BY p.idProducto " +
-                "ORDER BY recaudacion_total DESC " +
+                "GROUP BY p.nombre, p.valor " +
+                "ORDER BY recaudacion DESC " +
                 "LIMIT 1";
 
-        try(PreparedStatement statement=this.conexion.prepareStatement(query)){
-            ResultSet rs=statement.executeQuery();
-            if(rs.next()){
-                Producto producto = new Producto(rs.getInt("idProducto"),rs.getString("nombre"),rs.getFloat("valor"));
-                return producto;
+        try (PreparedStatement ps = conexion.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                return new ProductoDTO(
+                        rs.getString("nombre"),
+                        rs.getFloat("valor"),
+                        rs.getInt("cantidadVendida"),
+                        rs.getFloat("recaudacion")
+                );
             }
-        }catch (SQLException e){
-            e.printStackTrace();
         }
         return null;
     }

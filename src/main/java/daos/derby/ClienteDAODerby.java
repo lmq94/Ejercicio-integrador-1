@@ -1,5 +1,6 @@
 package daos.derby;
 
+import DTOs.ClienteDTO;
 import model.Cliente;
 import daos.ClienteDAO;
 
@@ -37,5 +38,10 @@ public class ClienteDAODerby implements ClienteDAO {
     @Override
     public Cliente getId(Cliente elemento) {
         return null;
+    }
+
+    @Override
+    public List<ClienteDTO> getClientesOrdenadosPorFacturacion() throws Exception {
+        return List.of();
     }
 }

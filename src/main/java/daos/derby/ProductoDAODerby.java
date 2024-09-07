@@ -1,5 +1,6 @@
 package daos.derby;
 
+import DTOs.ProductoDTO;
 import model.Producto;
 import daos.ProductoDAO;
 
@@ -40,7 +41,7 @@ public class ProductoDAODerby implements ProductoDAO {
     }
 
     @Override
-    public Producto obtenerProductoMasRecaudado() {
+    public ProductoDTO obtenerProductoMasRecaudado() {
         return null;
     }
 }

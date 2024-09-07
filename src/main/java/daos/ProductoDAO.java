@@ -1,10 +1,11 @@
 package daos;
 
+import DTOs.ProductoDTO;
 import model.Producto;
 
 import java.util.List;
 
 public interface ProductoDAO extends DAO<Producto>{
-    Producto obtenerProductoMasRecaudado();
+    ProductoDTO obtenerProductoMasRecaudado() throws Exception;
 
 }

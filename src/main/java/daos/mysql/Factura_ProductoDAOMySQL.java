@@ -12,8 +12,17 @@ import java.util.ArrayList;
 public class Factura_ProductoDAOMySQL implements Factura_ProductoDAO {
     private Connection conexion;
 
+    private static Factura_ProductoDAO instance;
+
     public Factura_ProductoDAOMySQL(Connection conexion) {
         this.conexion = conexion;
+    }
+
+    public static Factura_ProductoDAO getInstancia(Connection conexion) {
+        if (instance == null) {
+            instance = new Factura_ProductoDAOMySQL(conexion);
+        }
+        return instance;
     }
 
     @Override

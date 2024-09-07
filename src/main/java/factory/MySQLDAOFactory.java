@@ -21,21 +21,21 @@ public class MySQLDAOFactory implements DAOFactory{
 
     @Override
     public ClienteDAO getClienteDAO() {
-        return new ClienteDAOMySQL(conexion);
+        return ClienteDAOMySQL.getInstancia(conexion);
     }
 
     @Override
     public ProductoDAO getProductoDAO() {
-        return new ProductoDAOMySQL(conexion);
+        return ProductoDAOMySQL.getInstancia(conexion);
     }
 
     @Override
     public FacturaDAO getFacturaDAO(){
-        return new FacturaDAOMySQL(conexion);
+        return FacturaDAOMySQL.getInstancia(conexion);
     }
 
     @Override
     public Factura_ProductoDAO getFacturaProductoDAO() {
-        return new Factura_ProductoDAOMySQL(conexion);
+        return Factura_ProductoDAOMySQL.getInstancia(conexion);
     }
 }

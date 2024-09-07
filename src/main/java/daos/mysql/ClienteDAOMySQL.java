@@ -1,5 +1,6 @@
 package daos.mysql;
 
+import DTOs.ClienteDTO;
 import model.Cliente;
 import daos.ClienteDAO;
 
@@ -13,8 +14,17 @@ import java.util.List;
 public class ClienteDAOMySQL implements ClienteDAO {
     private Connection conexion;
 
-    public ClienteDAOMySQL(Connection conexion) {
+    private static ClienteDAO instancia;
+
+    private ClienteDAOMySQL(Connection conexion) {
         this.conexion = conexion;
+    }
+
+    public static ClienteDAO getInstancia(Connection conexion) {
+        if (instancia == null) {
+            instancia = new ClienteDAOMySQL(conexion);
+        }
+        return instancia;
     }
 
     //operaciones para cliente dao en mysql
@@ -113,6 +123,31 @@ public class ClienteDAOMySQL implements ClienteDAO {
         }catch (SQLException e){
             throw new Exception("Error al eliminar el cliente: ",e);
         }
+    }
+
+    // Método que devuelve la lista de clientes ordenados por facturación
+    public List<ClienteDTO> getClientesOrdenadosPorFacturacion() throws SQLException {
+        String query = "SELECT c.nombre, SUM(fp.cantidad * p.valor) as totalFacturado " +
+                "FROM cliente c " +
+                "JOIN factura f ON c.idCliente = f.idCliente " +
+                "JOIN factura_producto fp ON f.idFactura = fp.idFactura " +
+                "JOIN producto p ON fp.idProducto = p.idProducto " +
+                "GROUP BY c.nombre " +
+                "ORDER BY totalFacturado DESC";
+
+        List<ClienteDTO> clientes = new ArrayList<>();
+
+        try (PreparedStatement ps = conexion.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                clientes.add(new ClienteDTO(
+                        rs.getString("nombre"),
+                        rs.getFloat("totalFacturado")
+                ));
+            }
+        }
+        return clientes;
     }
 
 

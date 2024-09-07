@@ -14,9 +14,17 @@ import java.util.List;
 public class FacturaDAOMySQL implements FacturaDAO {
 
     private Connection conexion;
+    private static FacturaDAOMySQL instance;
 
-    public FacturaDAOMySQL(Connection conexion) {
+    private FacturaDAOMySQL(Connection conexion) {
         this.conexion = conexion;
+    }
+
+    public static FacturaDAOMySQL getInstancia(Connection conexion) {
+        if (instance == null) {
+            instance = new FacturaDAOMySQL(conexion);
+        }
+        return instance;
     }
 
     @Override
