@@ -6,8 +6,9 @@ public class DBFactory {
         switch (tipo){
             case "mysql":
                 return new MySQLImplementacion(url,usuario,contrasena);
-                case "derby":
-                return new DerbyImplementacion(url,null,null);
+
+            case "derby":
+                return new DerbyImplementacion(url);
 
             default:
                 return new MySQLImplementacion(url,usuario,contrasena);

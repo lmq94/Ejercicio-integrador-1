@@ -14,14 +14,13 @@ import java.sql.SQLException;
 public class Main {
     public static void main(String[] args) throws Exception {
         /* DATOS PARA MYSQL*/
-        String url = "jdbc:mysql://localhost:3306/mysqlJdbc";
+        String url = "jdbc:mysql://localhost:3333/test_mysql";
         String usuario = "root";
-        String contrasena = "123";
-        String database = "mysql";
+        String contrasena = "root";
+        String database = "test_mysql";
 
-        /*DATOS PARA DERBY
-         *   String url="";
-         * */
+        /*DATOS PARA DERBY*/
+
 
         //Seleccion de la base de datos a usar(mysql o derby)
         ConexionFactory factory= DBFactory.getDB(database,url,usuario,contrasena);

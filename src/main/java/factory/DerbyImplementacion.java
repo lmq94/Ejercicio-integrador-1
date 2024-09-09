@@ -10,8 +10,8 @@ public class DerbyImplementacion implements ConexionFactory {
 
     private String url;
 
-    public DerbyImplementacion(String url,String usuario,String contrasena) {
-        this.url = url;
+    public DerbyImplementacion(String url) {
+        this.url = this.url;
     }
 
     @Override
