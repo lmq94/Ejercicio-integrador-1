@@ -5,6 +5,8 @@ import daos.FacturaDAO;
 import daos.Factura_ProductoDAO;
 import daos.ProductoDAO;
 import daos.derby.ClienteDAODerby;
+import daos.derby.FacturaDAODerby;
+import daos.derby.FacturaProductoDAODerby;
 import daos.derby.ProductoDAODerby;
 
 import java.sql.Connection;
@@ -19,21 +21,19 @@ public class DerbyDAOFactory implements DAOFactory{
 
     @Override
     public ClienteDAO getClienteDAO() {
-        return new ClienteDAODerby(conexion);
+        return ClienteDAODerby.getInstancia(conexion);
     }
 
     @Override
     public ProductoDAO getProductoDAO() {
-        return new ProductoDAODerby(conexion);
+        return ProductoDAODerby.getInstancia(conexion);
     }
 
     @Override
-    public FacturaDAO getFacturaDAO() {
-        return null;
-    }
+    public FacturaDAO getFacturaDAO() {return FacturaDAODerby.getInstancia(conexion);}
 
     @Override
     public Factura_ProductoDAO getFacturaProductoDAO() {
-        return null;
+        return FacturaProductoDAODerby.getInstancia(conexion);
     }
 }
