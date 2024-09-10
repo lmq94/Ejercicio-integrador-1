@@ -11,7 +11,7 @@ public class DerbyImplementacion implements ConexionFactory {
     private String url;
 
     public DerbyImplementacion(String url) {
-        this.url = this.url;
+        this.url = url;
     }
 
     @Override
