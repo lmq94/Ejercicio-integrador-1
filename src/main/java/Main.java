@@ -1,10 +1,7 @@
 import DTOs.ProductoDTO;
 import conexion.Conexion;
 import daos.ProductoDAO;
-import factory.ConexionFactory;
-import factory.DAOFactory;
-import factory.DBFactory;
-import factory.MySQLDAOFactory;
+import factory.*;
 import model.Producto;
 import util.LoadCsv;
 
@@ -13,15 +10,19 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        /* DATOS PARA MYSQL*/
-        String url = "jdbc:mysql://localhost:3306/mysqlJdbc";
+        String url = "jdbc:mysql://localhost:3307/test_db";
         String usuario = "root";
-        String contrasena = "123";
+        String contrasena = "root";
         String database = "mysql";
 
-        /*DATOS PARA DERBY
-         *   String url="";
-         * */
+
+        /*
+        String url="jdbc:derby://localhost:1527/arqui_db;create=true";
+        String usuario = "";
+        String contrasena = "";
+        String database = "derby";
+         **/
+
 
         //Seleccion de la base de datos a usar(mysql o derby)
         ConexionFactory factory= DBFactory.getDB(database,url,usuario,contrasena);
@@ -33,10 +34,10 @@ public class Main {
         DAOFactory dao = new MySQLDAOFactory(conexion);
 
         LoadCsv cargador = new LoadCsv(dao);
-        //cargador.readProductos();
-        //cargador.readClientes();
-        //cargador.readFacturas();
-        //cargador.readFacturasProductos();
+        cargador.readProductos();
+        cargador.readClientes();
+        cargador.readFacturas();
+        cargador.readFacturasProductos();
 
 
         ProductoDAO productoDao= dao.getProductoDAO();
