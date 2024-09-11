@@ -1,4 +1,4 @@
-package factory;
+package factory.dbs;
 
 import conexion.Conexion;
 

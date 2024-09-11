@@ -141,6 +141,7 @@ public class ProductoDAOMySQL implements ProductoDAO {
              ResultSet rs = ps.executeQuery()) {
 
             if (rs.next()) {
+
                 return new ProductoDTO(
                         rs.getString("nombre"),
                         rs.getFloat("valor"),

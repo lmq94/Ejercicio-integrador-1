@@ -25,4 +25,11 @@ public class ClienteDTO {
     public void setTotalFacturado(float totalFacturado) {
         this.totalFacturado = totalFacturado;
     }
+
+    @Override
+    public String toString() {
+        return
+                this.nombre + '\'' +
+                ", Total Facturado=" + this.totalFacturado;
+    }
 }

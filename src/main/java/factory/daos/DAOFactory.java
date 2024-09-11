@@ -1,4 +1,4 @@
-package factory;
+package factory.daos;
 
 import daos.ClienteDAO;
 import daos.FacturaDAO;

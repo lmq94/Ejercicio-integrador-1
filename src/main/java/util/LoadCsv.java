@@ -7,16 +7,14 @@ import daos.Factura_ProductoDAO;
 import model.Cliente;
 import daos.ClienteDAO;
 import daos.ProductoDAO;
-import factory.DAOFactory;
+import factory.daos.DAOFactory;
 import model.Producto;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 
 public class LoadCsv {
 
