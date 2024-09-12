@@ -26,14 +26,11 @@ Esto pondrá en marcha un contenedor con MySQL en el puerto 3307, listo para ser
 #### Uso de Derby
 
 Si prefieres trabajar con Apache Derby, no es necesario un contenedor Docker. La base de datos se creará automáticamente al ejecutar el programa en la configuración de Derby, y estará disponible en el puerto 1527 en localhost.
-
-Pasos para usar Derby:
 Cuando ejecutes la aplicación con la configuración de Derby en Main.java, la base de datos será generada automáticamente.
-
-Configuración en la clase Main.java
 El código de la clase Main está preparado para conectarse a una base de datos a la vez. Por defecto, está configurado para MySQL, pero puedes cambiar fácilmente a Derby modificando ciertos parámetros.
 
-Cambiar a Derby
+#### Cambiar a Derby
+
 Si quieres usar Derby, debes ajustar los siguientes valores en Main.java:
 
 URL de conexión para Derby: jdbc:derby://localhost:1527/arqui_db;create=true;
@@ -93,7 +90,6 @@ Uso del DAO:
 
 Los archivos .csv que contienen los datos de prueba están ubicados en el directorio util/CSVs. El programa accede a estos archivos mediante una ruta relativa, por lo que no es necesario moverlos.
 
-Cómo cargar los datos
 En Main.java hay un bloque de código que permite cargar los datos desde los archivos .csv. Esta parte del código está comentada por defecto y solo debe ejecutarse una vez.
 
 Para cargar los datos, descomenta las siguientes líneas en Main.java:
