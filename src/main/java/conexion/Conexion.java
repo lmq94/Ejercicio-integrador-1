@@ -18,8 +18,18 @@ public class Conexion {
             this.contrasena=contrasena;
             this.conexion= DriverManager.getConnection(url,usuario,contrasena);
         }catch (SQLException e){
-                System.out.println("Error SQL: " + e.getMessage());
-                throw new SQLException("No se pudo conectar a la base", e);
+            System.out.println("Error SQL: " + e.getMessage());
+            throw new SQLException("No se pudo conectar a la base", e);
+        }
+    }
+
+    private Conexion(String url) throws SQLException{ //para derby
+        try{
+            this.url=url;
+            this.conexion= DriverManager.getConnection(url);
+        }catch (SQLException e){
+            System.out.println("Error SQL: " + e.getMessage());
+            throw new SQLException("No se pudo conectar a la base", e);
         }
     }
 
@@ -33,8 +43,9 @@ public class Conexion {
         return instancia;
     }
 
-
-
-
-
+    public static Conexion getInstancia(String url) throws SQLException{ //para derby
+        if (instancia==null)
+            instancia=new Conexion(url);
+        return instancia;
+    }
 }
