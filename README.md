@@ -19,8 +19,10 @@ Para trabajar con MySQL, primero debes levantar un contenedor Docker utilizando 
 
 1. Asegúrate de tener Docker instalado en tu sistema.
 2. Ejecuta el siguiente comando en la raíz del proyecto para levantar el contenedor:
+   
    ```bash
    docker-compose up
+   
 Esto pondrá en marcha un contenedor con MySQL en el puerto 3307, listo para ser utilizado en tu aplicación.
 
 #### Uso de Derby
