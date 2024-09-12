@@ -3,6 +3,7 @@ import DTOs.ProductoDTO;
 import daos.ClienteDAO;
 import daos.ProductoDAO;
 import factory.daos.DAOFactory;
+import factory.daos.DerbyDAOFactory;
 import factory.daos.MySQLDAOFactory;
 import factory.dbs.ConexionFactory;
 import factory.dbs.DBFactory;
@@ -15,13 +16,15 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         //CASO DE UTILIZAR MYSQL
-        String url = "jdbc:mysql://localhost:3306/mysqlJdbc";
-        String usuario = "usuario";
-        String contrasena = "123";
-        String database = "mysqlJdbc";
+        String url = "jdbc:mysql://localhost:3307/test_db";
+        String usuario = "root";
+        String contrasena = "root";
+        String database = "mysql";
 
 
-        /* //CASO DE UTILIZAR DERBY
+
+         /*
+         //CASO DE UTILIZAR DERBY
         String url="jdbc:derby://localhost:1527/arqui_db;create=true";
         String usuario = "";
         String contrasena = "";
@@ -36,15 +39,21 @@ public class Main {
         //CREAR LAS TABLAS
         factory.crearTablas(conexion);
 
+        //USAR DAO PARA EL TIPO DE BASE DE DATOS SELECCIONADA
+
         DAOFactory dao = new MySQLDAOFactory(conexion);
+
+      //DOFactory dao = new DerbyDAOFactory(conexion);
 
         LoadCsv cargador = new LoadCsv(dao);
 
         //UTILIZAR EN LA PRIMER EJECUCION DEL MAIN SOLAMENTE
-        //cargador.readProductos();
-        //cargador.readClientes();
-        //cargador.readFacturas();
-        //cargador.readFacturasProductos();
+        /*
+        cargador.readProductos();
+        cargador.readClientes();
+        cargador.readFacturas();
+        cargador.readFacturasProductos();
+         +*/
 
 
         ProductoDAO productoDao= dao.getProductoDAO();
