@@ -23,7 +23,8 @@ Para trabajar con MySQL, primero debes levantar un contenedor Docker utilizando 
    docker-compose up
 Esto pondrá en marcha un contenedor con MySQL en el puerto 3307, listo para ser utilizado en tu aplicación.
 
-Uso de Derby
+#### Uso de Derby
+
 Si prefieres trabajar con Apache Derby, no es necesario un contenedor Docker. La base de datos se creará automáticamente al ejecutar el programa en la configuración de Derby, y estará disponible en el puerto 1527 en localhost.
 
 Pasos para usar Derby:
@@ -35,52 +36,61 @@ El código de la clase Main está preparado para conectarse a una base de datos 
 Cambiar a Derby
 Si quieres usar Derby, debes ajustar los siguientes valores en Main.java:
 
-URL de conexión para Derby:
+URL de conexión para Derby: jdbc:derby://localhost:1527/arqui_db;create=true;
 
-java
-Copiar código
-String url = "jdbc:derby://localhost:1527/arqui_db;create=true";
-Usuario y contraseña: No es necesario establecer credenciales, puedes dejarlos vacíos:
+Usuario y contraseña: No es necesario establecer credenciales, puedes dejarlos vacíos
 
-java
-Copiar código
-String usuario = "";
-String contrasena = "";
 Tipo de base de datos: Cambia la variable database a "derby":
+   
+   ```bash
+   String url = "jdbc:derby://localhost:1527/arqui_db;create=true";
+   String usuario = "";
+   String constraseña = "";
+   String database = "derby";
+   ```
 
-java
-Copiar código
-String database = "derby";
-Uso del DAO: Cambia el DAO a Derby:
 
-java
-Copiar código
-DAOFactory dao = new DerbyDAOFactory(conexion);
-Volver a MySQL
+
+Uso del DAO: Cambia el DAO a Derby descomentando esta linea de codigo:
+
+
+   ```bash
+   DAOFactory dao = new DerbyDAOFactory(conexion);
+   ```
+
+
+#### Volver a MySQL
+
 Si deseas volver a usar MySQL, simplemente restaura las siguientes configuraciones en Main.java:
 
 URL de conexión para MySQL:
 
-java
-Copiar código
+```bash
 String url = "jdbc:mysql://localhost:3307/test_db";
+```
+
 Credenciales de acceso:
 
-java
-Copiar código
+```bash
 String usuario = "root";
 String contrasena = "root";
+```
 Tipo de base de datos:
 
-java
-Copiar código
+```bash
 String database = "mysql";
+```
+
 Uso del DAO:
 
-java
-Copiar código
+```bash
 DAOFactory dao = new MySQLDAOFactory(conexion);
-Archivos CSV
+```
+
+
+## Archivos CSV
+
+
 Los archivos .csv que contienen los datos de prueba están ubicados en el directorio util/CSVs. El programa accede a estos archivos mediante una ruta relativa, por lo que no es necesario moverlos.
 
 Cómo cargar los datos
@@ -88,13 +98,13 @@ En Main.java hay un bloque de código que permite cargar los datos desde los arc
 
 Para cargar los datos, descomenta las siguientes líneas en Main.java:
 
-java
-Copiar código
+```bash
 cargador.readProductos();
 cargador.readClientes();
 cargador.readFacturas();
 cargador.readFacturasProductos();
 Esto insertará los datos en la base de datos utilizando los archivos CSV.
+```
 
 Notas adicionales
 Asegúrate de utilizar solo una base de datos a la vez. Si estás utilizando Derby, comenta las configuraciones de MySQL y viceversa.
