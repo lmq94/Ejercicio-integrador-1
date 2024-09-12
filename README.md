@@ -50,7 +50,6 @@ Tipo de base de datos: Cambia la variable database a "derby":
    ```
 
 
-
 Uso del DAO: Cambia el DAO a Derby descomentando esta linea de codigo:
 
 
@@ -65,27 +64,28 @@ Si deseas volver a usar MySQL, simplemente restaura las siguientes configuracion
 
 URL de conexión para MySQL:
 
-```bash
-String url = "jdbc:mysql://localhost:3307/test_db";
-```
+   ```bash
+   String url = "jdbc:mysql://localhost:3307/test_db";
+   ```
 
 Credenciales de acceso:
+   
+   ```bash
+   String usuario = "root";
+   String contrasena = "root";
+   ```
 
-```bash
-String usuario = "root";
-String contrasena = "root";
-```
 Tipo de base de datos:
 
-```bash
-String database = "mysql";
-```
+   ```bash
+   String database = "mysql";
+   ```
 
 Uso del DAO:
 
-```bash
-DAOFactory dao = new MySQLDAOFactory(conexion);
-```
+   ```bash
+   DAOFactory dao = new MySQLDAOFactory(conexion);
+   ```
 
 
 ## Archivos CSV
@@ -97,15 +97,16 @@ Cómo cargar los datos
 En Main.java hay un bloque de código que permite cargar los datos desde los archivos .csv. Esta parte del código está comentada por defecto y solo debe ejecutarse una vez.
 
 Para cargar los datos, descomenta las siguientes líneas en Main.java:
+   
+   ```bash
+   cargador.readProductos();
+   cargador.readClientes();
+   cargador.readFacturas();
+   cargador.readFacturasProductos();
+   Esto insertará los datos en la base de datos utilizando los archivos CSV.
+   ```
 
-```bash
-cargador.readProductos();
-cargador.readClientes();
-cargador.readFacturas();
-cargador.readFacturasProductos();
-Esto insertará los datos en la base de datos utilizando los archivos CSV.
-```
+## Notas adicionales
 
-Notas adicionales
 Asegúrate de utilizar solo una base de datos a la vez. Si estás utilizando Derby, comenta las configuraciones de MySQL y viceversa.
 La carga de datos desde los .csv solo debe realizarse en la primera ejecución del programa.
